@@ -4343,7 +4343,7 @@ var domHelpers = ($__helpers_47_dom_47_element__ = _dereq_("helpers/dom/element"
 var domEventHelpers = ($__helpers_47_dom_47_event__ = _dereq_("helpers/dom/event"), $__helpers_47_dom_47_event__ && $__helpers_47_dom_47_event__.__esModule && $__helpers_47_dom_47_event__ || {default: $__helpers_47_dom_47_event__});
 var HELPERS = [arrayHelpers, browserHelpers, dataHelpers, dateHelpers, featureHelpers, functionHelpers, mixedHelpers, numberHelpers, objectHelpers, settingHelpers, stringHelpers, unicodeHelpers];
 var DOM = [domHelpers, domEventHelpers];
-Handsontable.buildDate = 'Thu Oct 13 2016 13:58:53 GMT+0200 (CEST)';
+Handsontable.buildDate = 'Wed Oct 19 2016 21:26:46 GMT+0200 (CEST)';
 Handsontable.packageName = 'handsontable';
 Handsontable.version = '0.28.4';
 var baseVersion = '@@baseVersion';
@@ -6265,6 +6265,7 @@ DefaultSettings.prototype = {
   cells: void 0,
   cell: [],
   comments: false,
+  copyColumnHeaders: false,
   customBorders: false,
   minRows: 0,
   minCols: 0,
@@ -16084,6 +16085,14 @@ function CopyPastePlugin(instance) {
       }));
       dataSet.push(rowSet);
     }));
+    if (instance.getSettings().copyColumnHeaders) {
+      var colHeaders = instance.getColHeader();
+      var headerSet = [];
+      arrayEach(copyableColumns, (function(column) {
+        headerSet.push(colHeaders[column]);
+      }));
+      dataSet.unshift(headerSet);
+    }
     return SheetClip.stringify(dataSet);
   };
 }

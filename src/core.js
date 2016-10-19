@@ -3551,6 +3551,12 @@ DefaultSettings.prototype = {
 
   /**
    * @description
+   * If `true`, copies the column headers to the clipboard.
+   */
+  copyColumnHeaders: false,
+
+  /**
+   * @description
    * If `true`, enables the Custom Borders plugin, which enables an option to apply custom borders through the context menu (configurable with context menu key `borders`).
    *
    * To initialize Handsontable with predefined custom borders, provide cell coordinates and border styles in a form of an array.

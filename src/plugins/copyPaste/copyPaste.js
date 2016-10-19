@@ -236,6 +236,17 @@ function CopyPastePlugin(instance) {
       dataSet.push(rowSet);
     });
 
+    if (instance.getSettings().copyColumnHeaders) {
+      let colHeaders = instance.getColHeader();
+      let headerSet = [];
+
+      arrayEach(copyableColumns, (column) => {
+        headerSet.push(colHeaders[column]);
+      });
+
+      dataSet.unshift(headerSet);
+    }
+
     return SheetClip.stringify(dataSet);
   };
 }
